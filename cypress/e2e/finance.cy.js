@@ -18,18 +18,6 @@ const buttonSave = "Salvar";
 const incomeDisplay = "#incomeDisplay";
 const expenseDisplay = "#expenseDisplay";
 
-describe("Transactions", () => {
-  it("Add transaction", () => {
-    cy.visit(BASE_URL);
-    addTransaction("Freela", 150);
-    addTransaction("Salário", 220);
-
-    addTransaction("Transporte", -20);
-    addTransaction("Lanche", -25);
-    addTransaction("Hospedagem", -120);
-  });
-});
-
 const addTransaction = (description, amount) => {
   cy.get(buttonAddTransaction).click();
   cy.get(inputDescription).type(description);
@@ -37,3 +25,20 @@ const addTransaction = (description, amount) => {
   cy.get(inputDate).type("2023-03-29");
   cy.contains(buttonSave).click();
 };
+
+describe("Transactions", () => {
+  beforeEach(() => {
+    cy.visit(BASE_URL);
+  });
+
+  it("Income transaction", () => {
+    addTransaction("Freela", 150);
+    addTransaction("Salário", 220);
+  });
+
+  it("Expense transaction", () => {
+    addTransaction("Transporte", -20);
+    addTransaction("Lanche", -25);
+    addTransaction("Hospedagem", -120);
+  });
+});
