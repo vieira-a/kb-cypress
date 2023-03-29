@@ -45,6 +45,12 @@ describe("Transactions", () => {
   it("Remove transaction", () => {
     addTransaction("Freela", 150);
     addTransaction("Lanche", -25);
-    cy.contains(".description", "Lanche").parent().find("img").click();
+
+    // cy.contains(".description", "Lanche")
+    //   .parent()
+    //   .find("img")
+    //   .click();
+
+    cy.contains(".description", "Lanche").siblings().children("img").click();
   });
 });
