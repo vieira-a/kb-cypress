@@ -31,14 +31,20 @@ describe("Transactions", () => {
     cy.visit(BASE_URL);
   });
 
-  it("Income transaction", () => {
+  it("Income transactions", () => {
     addTransaction("Freela", 150);
     addTransaction("Salário", 220);
   });
 
-  it("Expense transaction", () => {
+  it("Expense transactions", () => {
     addTransaction("Transporte", -20);
     addTransaction("Lanche", -25);
     addTransaction("Hospedagem", -120);
+  });
+
+  it("Remove transaction", () => {
+    addTransaction("Freela", 150);
+    addTransaction("Lanche", -25);
+    cy.contains(".description", "Lanche").parent().find("img").click();
   });
 });
